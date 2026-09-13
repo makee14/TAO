@@ -1,0 +1,36 @@
+{
+  "name": "telegram-agent-orchestrator",
+  "version": "0.1.0",
+  "description": "Windows-only Telegram orchestrator for Cline CLI agents",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "setup": "node src/setup-wizard.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20.11.0" },
+  "license": "MIT",
+  "author": "makee14",
+  "keywords": [
+    "telegram",
+    "bot",
+    "orchestrator",
+    "cline",
+    "cline-cli",
+    "agent",
+    "windows"
+  ],
+  "files": [
+    "src/",
+    "scripts/",
+    "config.example.json",
+    "install-task.ps1",
+    "watchdog.ps1",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "dependencies": {
+    "telegraf": "^4.16.3",
+    "prompts": "^2.4.2"
+  }
+}

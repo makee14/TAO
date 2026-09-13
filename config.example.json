@@ -1,0 +1,51 @@
+{
+  "telegram": {
+    "botToken": "123456:ABC-DEF...",
+    "userId": 123456789,
+    "parseMode": "HTML"
+  },
+  "cline": {
+    "bin": "cline",
+    "version": "3.0.61",
+    "_comment": "Provider/model lists come from ~/.cline/data/settings. Thinking levels: none, low, medium, high, xhigh.",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash",
+    "visionProvider": "gemini",
+    "visionModel": "gemini-3.5-flash",
+    "retries": 3,
+    "timeoutSec": 1800,
+    "mode": "act",
+    "planThinking": "high",
+    "actThinking": "medium",
+    "thinking": "medium",
+    "geminiKeys": []
+  },
+  "workspaces": [
+    { "name": "myproject", "path": "C:\\Projects\\myproject", "default": true }
+  ],
+  "github": {
+    "pat": "github_pat_...",
+    "defaultBranch": "main",
+    "allowCreate": true,
+    "repos": [
+      { "name": "myproject-work", "owner": "your-github-login", "repo": "myproject-work", "branch": "main", "default": true, "ws": "myproject" }
+    ]
+  },
+  "orchestration": {
+    "maxParallel": 3,
+    "circuitBreaker": { "enabled": true, "maxConsecutiveFailures": 3, "cooldownSec": 90 },
+    "publishConfirmation": true
+  },
+  "paths": {
+    "taskStore": "./data/tasks.json",
+    "runs": "./data/runs",
+    "attachments": "./data/attachments",
+    "publishMirror": "./data/publish",
+    "skills": "~/.cline/skills",
+    "hook": "./data/hook.md"
+  },
+  "retention": { "days": 30 },
+  "progress": { "debounceSec": 30, "autoDeleteProgress": true },
+  "safety": { "allowShutdownPc": true, "shutdownGraceSec": 60, "closeWindowsBeforeShutdown": true },
+  "heartbeat": { "enabled": false, "intervalMin": 60, "_comment": "Drives a periodic Health-card ping only — the /heartbeat command is retired." }
+}
