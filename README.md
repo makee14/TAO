@@ -34,7 +34,7 @@ TAO (**T**elegram **A**gent **O**rchestrator) is a Windows-only Telegram bot tha
 spawns and manages [Cline CLI](https://github.com/cline/cline) AI coding agents
 on your PC. Think of it as a **mission control dashboard in your pocket**:
 
-- **Queue tasks** — send instructions from Telegram, TAO queues them and runs them
+- **Queue tasks** — send instructions from Telegram and TAO queues them and runs them
   in order (or in parallel up to your configured limit).
 - **Real-time status** — interactive cards update in place as agents work.
 - **GitHub integration** — completed tasks can be published (committed + pushed) to

@@ -10,7 +10,7 @@ Here is the big picture:
 You (phone)  ──Telegram──►  TAO (your Windows PC)  ──spawns──►  Cline CLI agents
                                  │                                    │
                                  ▼                                    ▼
-                            live progress ◄────NDJSON events────  your project folder
+                            live progress ◄──── live status events ────  your project folder
                                  │
                                  ▼
                           GitHub repo (auto-committed & pushed)
