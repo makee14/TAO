@@ -105,7 +105,20 @@ class Publisher {
   async #remoteAheadCount(mirror, branch) {
     try {
       await run('git', [...this.#auth(), 'fetch', 'origin', '--quiet'], { cwd: mirror }, this.pat);
-      const n = await run('git', ['rev-list', '--count', `HEAD..origin/${branch || this.defaultBranch}`], { cwd: mirror });
+      const ref = `origin/${branch || this.defaultBranch}`;
+      // Empty-bare-clone trap: mirror has no commits yet (unborn HEAD), so
+      // `HEAD..origin/branch` dies with "invalid object name 'HEAD'". If the
+      // ref exists the whole remote history is remote-only work → refuse.
+      let headOk = true;
+      try { await run('git', ['rev-parse', '--verify', '--quiet', 'HEAD'], { cwd: mirror }); }
+      catch { headOk = false; }
+      if (!headOk) {
+        const refSha = (await run('git', ['rev-parse', '--verify', '--quiet', ref], { cwd: mirror })).trim();
+        if (!refSha) return 0; // truly empty on both sides — nothing to protect
+        const n = await run('git', ['rev-list', '--count', ref], { cwd: mirror });
+        return parseInt(String(n).trim(), 10) || 1;
+      }
+      const n = await run('git', ['rev-list', '--count', `HEAD..${ref}`], { cwd: mirror });
       return parseInt(String(n).trim(), 10) || 0;
     } catch {
       return 0; // no upstream branch yet (first publish) — nothing to protect
